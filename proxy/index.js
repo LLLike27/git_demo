@@ -1,15 +1,13 @@
 var person = {
     name: "张三"
-  };
-  
+};
+
 var proxy = new Proxy(person, {
-    get: function(target, propKey) {
-    if (propKey in target) {
-        return target[propKey];
-    } else {
-        throw new ReferenceError("Prop name \"" + propKey + "\" does not exist.");
-    }
+    get: function (target, propKey) {
+        if (propKey in target) {
+            return target[propKey];
+        } else {
+            throw new ReferenceError("Prop name \"" + propKey + "\" does not exist.");
+        }
     }
 });
-console.log(proxy.name);
-console.log(proxy.age);
