@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --h: 931px;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .demo1 {
+            height: var(--h);
+            background-color: antiquewhite;
+        }
+
+        .demo2 {
+            height: var(--h);
+            background-color: aqua;
+        }
+
+        .demo3 {
+            height: var(--h);
+            background-color: blue;
+        }
+
+        .demo4 {
+            height: var(--h);
+            background-color: chartreuse;
+        }
+
+        .fix-post {
+            position: fixed;
+            right: 50px;
+            bottom: 100px;
+            width: 200px;
+        }
+
+        li {
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            list-style: none;
+            border-top: 1px solid #fff;
+            border-left: 1px solid #fff;
+            border-right: 1px solid #fff;
+        }
+
+        li:last-child {
+            border-bottom: 1px solid #fff;
+        }
+
+        .liactive {
+            background-color: cornsilk;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="demo1">1111</div>
+        <div class="demo2">2</div>
+        <div class="demo3">3</div>
+        <div class="demo4">4</div>
+    </div>
+    <ul class="fix-post" id="nav">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+</body>
+<script>
+    let domNav = document.getElementById('nav')
+    let liList = document.querySelectorAll("#nav li")
+    console.log('liList', liList)
+    // 给父级元素注册点击事件(利用事件委托)
+    domNav.addEventListener('click', (event) => {
+        for (let i = 0; i < liList.length; i++) {
+            // 移除所有元素的类名liactive
+            liList[i].classList.remove('liactive')
+            // 给右侧的按钮添加上索引
+            liList[i]['index'] = i
+        }
+        console.log('event.target', event.target.index)
+        // 给当前元素添加激活这个类名
+        event.target.classList.add('liactive');
+
+        // 点击按钮的时候，滚动到相应的区域
+        window.scrollTo({
+            top: event.target.index * 931,
+            behavior: "smooth" // 平滑的滚动
+        })
+    })
+
+    let index
+    let topValue = document.documentElement.scrollTop || document.body.scrollTop
+    // 离为0.显示第一个指示灯
+    if (topValue == 0) {
+        liList[0].classList.add('liactive');
+    }
+    // 实现滚动的时候，右侧区域自动高亮
+    window.addEventListener('scroll', () => {
+        console.log('scroll-触发')
+        // 兼容
+        let top = (document.documentElement.scrollTop || document.body.scrollTop) + 279 //手动新增一个值
+        // 如果索引不变，则不取新增或者移除类名
+        if (Math.floor(top / 931) != index) {
+            // 获取当前区域的下标
+            index = Math.floor(top / 931)
+            for (let i = 0; i < liList.length; i++) {
+                // 移除所有元素的类名liactive
+                liList[i].classList.remove('liactive')
+            }
+            // 给当前元素添加激活这个类名
+            liList[index].classList.add('liactive');
+        }
+    }, false)
+</script>
+
+</html>

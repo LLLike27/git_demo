@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <title>External Player - 哔哩哔哩嵌入式外链播放器</title>
+    <meta http-equiv="Content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="spm_prefix" content="457.1">
+    <style data-info="BaseStyle">
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        }
+
+        #shinonome {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script data-info="isMobileDevice">
+        (function () {
+            const ua = navigator.userAgent;
+            // const isMobile = !!ua.match(/AppleWebKit.*Mobile.*/);
+            // const mobileUrl = '//www.bilibili.com/blackboard/html5mobileplayer.html';
+            const isMobile = !!ua.match(/AppleWebKit.*Mobile.*/) && !ua.match(/Domono/);
+            const mobileUrl = '//www.bilibili.com/blackboard/webplayer/mbplayer.html';
+
+            if (isMobile) {
+                try {
+                    const url = new URL(mobileUrl + location.search);
+                    const sp = url.searchParams;
+                    sp.has('page') && sp.set('p', sp.get('page'));
+                    location.href = url.toString();
+                } catch (e) {
+                    location.href = mobileUrl + location.search;
+                }
+            }
+        })();
+    </script>
+    <script crossorigin="anonymous" src="//s1.hdslb.com/bfs/seed/log/report/log-reporter.js"></script>
+    <script crossorigin="anonymous" src="//s1.hdslb.com/bfs/static/player/main/core.1882af9a.js"></script>
+    <script data-info="Toolkit">
+        function GetUrlValue(name) {
+            const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+            const r = window.location.search.slice(1).match(reg);
+            if (r != null) {
+                try {
+                    return decodeURIComponent(r[2]);
+                } catch (e) {
+                    return null;
+                }
+            }
+            return null;
+        }
+
+        function GetCookie(name) {
+            const defRet = ''; if (name == null) return defRet;
+            const cookies = document.cookie.split(';');
+            const decodeCookieName = decodeURIComponent(name);
+            for (let i = 0; i < cookies.length; i++) {
+                const ck = cookies[i] || '';
+                const kv = ck.trim().split('=');
+                const key = kv[0];
+                const value = kv[1];
+                if (decodeURIComponent(key) === decodeCookieName) {
+                    return value ? decodeURIComponent(value) : value;
+                }
+            }
+            return defRet;
+        }
+
+        function GetMeta(metaName) {
+            const metas = document.getElementsByTagName('meta');
+            for (let i = 0; i < metas.length; i++) {
+                if (metas[i].getAttribute('name') === metaName) {
+                    return metas[i].getAttribute('content');
+                }
+            }
+            return '';
+        }
+    </script>
+    <script data-info="SearchParam">
+        // =defaultValue
+        window.SEARCH_PARAM = {
+            autoplay: true,
+        };
+
+        (function (SP) {
+            const TypeMap = {
+                number: 'number',
+                boolean: 'boolean',
+                string: 'string',
+            };
+            const paramType = {
+                aid: TypeMap.number,
+                cid: TypeMap.number,
+                bvid: TypeMap.string,
+                seasonId: TypeMap.number,
+                episodeId: TypeMap.number,
+                poster: TypeMap.boolean,
+                autoplay: TypeMap.boolean,
+                muted: TypeMap.boolean,
+                t: TypeMap.number,
+                p: TypeMap.number,
+                page: TypeMap.number,
+                danmaku: TypeMap.boolean,
+                kind: TypeMap.number,
+                refer: TypeMap.boolean,
+            };
+
+            Object.keys(paramType).forEach(function (key) {
+                const value = GetUrlValue(key); if (!value) return;
+
+                switch (paramType[key]) {
+                    case TypeMap.number: SP[key] = +value; break;
+                    case TypeMap.boolean:
+                        switch (value) {
+                            case 'true': SP[key] = true; break;
+                            case 'false': SP[key] = false; break;
+                            default: SP[key] = !!+value; break;
+                        }
+                        break;
+                    case TypeMap.string: SP[key] = value; break;
+                }
+            });
+        })(window.SEARCH_PARAM);
+    </script>
+</head>
+
+<body>
+
+    <div id="shinonome"></div>
+
+    <script data-info="SetupPlayer">
+        (function (SP) {
+            window['__NanoStaticHttpKey'] = true;
+            if (SP.refer) {
+                window['__NanoEmbedRefer'] = true;
+            }
+            const element = document.getElementById('shinonome');
+            const featureList = new Set(['noSendingBar', 'noLayerShadow', 'noLightOff', 'noSEsDanmaku']);
+            const controlsList = new Set(['noScreenWide', 'noScreenWeb']);
+            const getGroupKind = function () {
+                if (SP.kind) return SP.kind;
+                if (SP.episodeId) return nano.GroupKind.Pgc;
+                return nano.GroupKind.Ugc;
+            };
+            const getChannelKind = function () {
+                return nano.ChannelKind.Embedded_Other;
+            };
+
+            if (SP.danmaku != null && !SP.danmaku) {
+                featureList.add('noDanmaku');
+            }
+
+            const config = {
+                iid: null,
+                aid: SP.aid,
+                cid: SP.cid,
+                bvid: SP.bvid,
+                seasonId: SP.seasonId,
+                episodeId: SP.episodeId,
+                element: element,
+                kind: getGroupKind(),
+                channelKind: getChannelKind(),
+                t: SP.t,
+                p: SP.p || SP.page,
+                muted: SP.muted,
+                poster: SP.poster,
+                autoplay: SP.autoplay,
+                featureList: featureList,
+                controlsList: controlsList,
+                stats: {
+                    spmId: window.GetMeta('spm_prefix'),
+                },
+                enableHEVC: true,
+                enableAV1: true,
+            };
+
+            const player = window.player = nano.createPlayer(config);
+            player.connect();
+        })(window.SEARCH_PARAM);
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #sameDomain {
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="sameDomain"></div>
+    <div id="crossDomain"></div>
+    <script>
+        function autoResize(event) {
+            const iframeEle = event.target;
+            const localDomain = location.protocol + '//' + location.host + '/';
+            const targetSrc = iframeEle.src;
+            console.log(targetSrc);
+            if ((targetSrc.startsWith('http://') || targetSrc.startsWith('https://')) && !targetSrc.startsWith(localDomain)) {
+                console.log('init auto resize with crossdomain.');
+                window.addEventListener('message', function (event) {
+                    let eventData = event.data;
+                    if (eventData && eventData.type === 'resize') {
+                        console.log(`cross domain resize to: ${eventData.height}`);
+                        iframeEle.style.height = eventData.height + 'px';
+                    }
+                }, false);
+            } else {
+                console.log('init auto resize with same domain.');
+                const resizeRo = new ResizeObserver((entries) => {
+                    let entry = entries[0];
+                    let height = entry.contentRect.height;
+                    //console.log(`resize to: ${height}`);
+                    iframeEle.style.height = height + 'px';
+                });
+                resizeRo.observe(iframeEle.contentWindow.document.body);
+            }
+        }
+        // iframe with same origin:
+        const iframe1 = document.createElement('iframe');
+        iframe1.src = 'target.html';
+        iframe1.onload = autoResize;
+        document.getElementById('sameDomain').appendChild(iframe1);
+
+        // cross origin iframe:
+        const iframe2 = document.createElement('iframe');
+        iframe2.src = 'https://auto-resize-iframe.vercel.app/cross.html';
+        iframe2.onload = autoResize;
+        document.getElementById('crossDomain').appendChild(iframe2);
+    </script>
+</body>
+
+</html>

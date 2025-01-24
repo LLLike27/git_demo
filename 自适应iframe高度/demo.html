@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Auto iFrame</title>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@4/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    <style>
+        iframe {
+            width: 100%;
+            border-width: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="jumbotron bg-primary text-white rounded-0">
+        <div class="container-xl">
+            <div class="row">
+                <div class="col">
+                    <h1>Auto Resize iFrame</h1>
+                    <p class="lead">A simple way to make iframe auto fit.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-xl">
+        <h3>Playground</h3>
+        <hr>
+        <div class="row">
+            <div class="col-6">
+                <div id="sameDomain"></div>
+            </div>
+            <div class="col-6">
+                <div id="crossDomain"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <hr>
+            <p class="text-center">Copyright &copy; 2024</p>
+        </div>
+    </footer>
+    <script>
+        function autoResize(event) {
+            const iframeEle = event.target;
+            const localDomain = location.protocol + '//' + location.host + '/';
+            const targetSrc = iframeEle.src;
+            console.log(targetSrc);
+            if ((targetSrc.startsWith('http://') || targetSrc.startsWith('https://')) && !targetSrc.startsWith(localDomain)) {
+                console.log('init auto resize with crossdomain.');
+                window.addEventListener('message', function (event) {
+                    let eventData = event.data;
+                    if (eventData && eventData.type === 'resize') {
+                        console.log(`cross domain resize to: ${eventData.height}`);
+                        iframeEle.style.height = eventData.height + 'px';
+                    }
+                }, false);
+            } else {
+                console.log('init auto resize with same domain.');
+                const resizeRo = new ResizeObserver((entries) => {
+                    let entry = entries[0];
+                    let height = entry.contentRect.height;
+                    //console.log(`resize to: ${height}`);
+                    iframeEle.style.height = height + 'px';
+                });
+                resizeRo.observe(iframeEle.contentWindow.document.body);
+            }
+        }
+        // iframe with same origin:
+        const iframe1 = document.createElement('iframe');
+        iframe1.src = 'target.html';
+        iframe1.onload = autoResize;
+        document.getElementById('sameDomain').appendChild(iframe1);
+
+        // cross origin iframe:
+        const iframe2 = document.createElement('iframe');
+        iframe2.src = 'https://auto-resize-iframe.vercel.app/cross.html';
+        iframe2.onload = autoResize;
+        document.getElementById('crossDomain').appendChild(iframe2);
+    </script>
+</body>
+
+</html>

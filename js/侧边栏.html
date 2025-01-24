@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            height: 100%;
+            width: 100vw;
+            background-color: #FFF;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .speed-rocket-container {
+            position: fixed;
+            right: 0;
+            top: 100px;
+            /* 初始值从 sessionStorage 获取 */
+            z-index: 103;
+        }
+
+        .show-all-rocket {
+            align-items: center;
+            color: #89a5c2;
+            display: flex;
+            font-size: 12px;
+            font-weight: 400;
+            border: 1px solid #ccc;
+        }
+
+        .close-icon {
+            display: none;
+        }
+
+        .speed-rocket-container dl dt .open-icon {
+            width: 78px;
+        }
+
+        @keyframes show-rocket {
+            0% {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes close-rocket {
+            0% {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(100%);
+            }
+        }
+
+        .speed-rocket-container .show-all-rocket1 {
+            animation: show-rocket 1s ease forwards
+        }
+
+        .speed-rocket-container .close-all-rocket {
+            animation: close-rocket 1s ease forwards
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="speed-rocket-container" id="speedRocketContainer">
+            <img src="1.svg" class="close-icon">
+            <dl class="show-all-rocket">
+                <dt><img src="2.png" class="open-icon"></dt>
+                <dd>
+                    <p>
+                        <font color="#82889A">下行带宽可提速至</font>
+                        <font color="#00D2FA">500M</font>
+                    </p>
+                    <button class="red-button">
+                        立即体验
+                    </button>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <script>
+        // 初始化 top 值
+        const speedRocketContainer = document.getElementById('speedRocketContainer');
+        const initialTop = sessionStorage.getItem('top') || '100px';
+        speedRocketContainer.style.top = initialTop;
+
+        // 获取其他元素
+        const openIcon = document.querySelector('.open-icon');
+        const closeIcon = document.querySelector('.close-icon');
+        const showAllRocket = document.querySelector('.show-all-rocket');
+
+        // 拖动相关变量
+        let isDragging = false;
+        let startY = 0;
+        let startTop = 0;
+        let dragThreshold = 5; // 移动阈值
+        let moveDistance = 0;  // 记录鼠标移动距离
+
+        // 添加鼠标按下事件
+        speedRocketContainer.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startY = e.clientY;
+            startTop = parseFloat(speedRocketContainer.style.top.replace('px', ''));
+
+            // 阻止默认行为，避免文本选择
+            e.preventDefault();
+        });
+
+        // 添加鼠标移动事件
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const currentY = e.clientY;
+            const newTop = startTop + (currentY - startY);
+            // 更新 top 值
+            speedRocketContainer.style.top = `${newTop}px`;
+            // 存储 top 值
+            sessionStorage.setItem('top', `${newTop}px`);
+            // 计算移动距离
+            moveDistance = Math.abs(currentY - startY);
+
+        });
+
+        // 添加鼠标释放事件
+        document.addEventListener('mouseup', (e) => {
+            e.preventDefault();
+            isDragging = false;
+        });
+
+
+
+        // 处理点击事件
+        openIcon.addEventListener('click', function () {
+            // 检查移动距离，避免误触发点击事件
+            if (moveDistance < dragThreshold) {
+                showAllRocket.classList.add('close-all-rocket');
+                setTimeout(function () {
+                    openIcon.style.display = 'none';
+                    showAllRocket.style.display = 'none';
+                    closeIcon.style.display = 'block';
+                }, 1000);
+            } else {
+                setTimeout(() => {
+                    moveDistance = 0
+                }, 200)
+            }
+
+        });
+
+        closeIcon.addEventListener('click', function () {
+            if (moveDistance < dragThreshold) {
+                closeIcon.style.display = 'none';
+                openIcon.style.display = 'block';
+                showAllRocket.classList.remove('close-all-rocket');
+                setTimeout(function () {
+                    showAllRocket.style.display = 'flex';
+                    showAllRocket.classList.add('show-all-rocket1');
+                }, 500);
+            } else {
+                setTimeout(() => {
+                    moveDistance = 0
+                }, 200)
+            }
+
+        });
+    </script>
+</body>
+
+</html>

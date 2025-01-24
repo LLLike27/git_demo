@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排序算法演示</title>
+</head>
+
+<body>
+    <button onclick="generateRandomArray(150)">随机生成150个数的数组</button>
+    <button onclick="bubbleSort()">使用冒泡排序</button>
+    <button onclick="selectionSort()">使用选择排序法</button>
+    <button onclick="InsertionSort()">使用插入排序法</button>
+    <button onclick="QuickSort()">快速排序法</button>
+    <p id="showArray"></p>
+    <p id="showSortProcess"></p>
+    <script>
+        var arr = ["apple", "dog", "cat", "car", "zoo", "orange", "airplane"];
+
+        // 升序排序 (a-z)
+        function sortAZ(array) {
+            return array.sort((a, b) => a.localeCompare(b));
+        }
+
+        // 降序排序 (z-a)
+        function sortZA(array) {
+            return array.sort((a, b) => b.localeCompare(a));
+        }
+
+        // 调用排序函数并输出结果
+        function displaySortedArrays() {
+            var sortedAZ = sortAZ(arr.slice());
+            var sortedZA = sortZA(arr.slice());
+
+            console.log("升序排序 (a-z):", sortedAZ);
+            console.log("降序排序 (z-a):", sortedZA);
+        }
+
+        // 调用函数
+        displaySortedArrays();
+    </script>
+    <script>
+        var arr = [];
+
+        function bubbleSort() {
+            var startTime = performance.now();
+
+            // 实现冒泡排序
+            var temp;
+            for (var i = 0; i < arr.length - 1; i++) {
+                for (var j = 0; j < arr.length - 1 - i; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+            // 记录排序结束的时间点，并计算执行时间
+            var endTime = performance.now();
+            var executionTime = endTime - startTime;
+            document.getElementById("showSortProcess").innerHTML = "冒泡排序后的数组为：" + arr.join(",") + "<br>排序耗时：" + executionTime.toFixed(2) + "ms";
+        }
+
+        function selectionSort() {
+            var startTime = performance.now();
+
+            // 实现选择排序法
+            for (var i = 0; i < arr.length - 1; i++) {
+                var minIndex = i;
+                for (var j = i + 1; j < arr.length; j++) {
+                    if (arr[j] < arr[minIndex]) {
+                        minIndex = j;
+                    }
+                }
+                if (minIndex !== i) {
+                    var temp = arr[i];
+                    arr[i] = arr[minIndex];
+                    arr[minIndex] = temp;
+                }
+            }
+            // 记录排序结束的时间点，并计算执行时间
+            var endTime = performance.now();
+            var executionTime = endTime - startTime;
+            document.getElementById("showSortProcess").innerHTML = "选择排序后的数组为：" + arr.join(",") + "<br>排序耗时：" + executionTime.toFixed(2) + "ms";
+        }
+
+        function InsertionSort() {
+            var startTime = performance.now();
+
+            // 实现插入排序法
+            for (var i = 1; i < arr.length; i++) {
+                var key = arr[i];
+                var j = i - 1;
+                while (j >= 0 && arr[j] > key) {
+                    arr[j + 1] = arr[j];
+                    j--;
+                }
+                arr[j + 1] = key;
+            }
+            // 记录排序结束的时间点，并计算执行时间
+            var endTime = performance.now();
+            var executionTime = endTime - startTime;
+            document.getElementById("showSortProcess").innerHTML = "插入排序后的数组为：" + arr.join(",") + "<br>排序耗时：" + executionTime.toFixed(2) + "ms";
+        }
+
+        function QuickSort(arr, left, right) {
+            if (left < right) {
+                var pivotIndex = partition(arr, left, right);
+                QuickSort(arr, left, pivotIndex - 1);
+                QuickSort(arr, pivotIndex + 1, right);
+            }
+        }
+
+        function partition(arr, left, right) {
+            var pivot = arr[right];
+            var i = left - 1;
+            for (var j = left; j < right; j++) {
+                if (arr[j] <= pivot) {
+                    i++;
+                    var temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+            var temp = arr[i + 1];
+            arr[i + 1] = arr[right];
+            arr[right] = temp;
+            return i + 1;
+        }
+
+        function QuickSortWrapper() {
+            var startTime = performance.now();
+            QuickSort(arr, 0, arr.length - 1);
+            // 记录排序结束的时间点，并计算执行时间
+            var endTime = performance.now();
+            var executionTime = endTime - startTime;
+            document.getElementById("showSortProcess").innerHTML = "快速排序后的数组为：" + arr.join(",") + "<br>排序耗时：" + executionTime.toFixed(2) + "ms";
+        }
+
+        function generateRandomArray(length) {
+            // 生成随机数组
+            arr = [];
+            for (var i = 0; i < length; i++) {
+                arr.push(Math.floor(Math.random() * 100));
+            }
+            document.getElementById("showArray").innerHTML = "随机生成的数组为：" + arr.join(",");
+        }
+    </script>
+    <script>
+        var arr = [
+            {
+                id: 1,
+                name: "candy",
+                value: 40,
+            },
+            {
+                id: 2,
+                name: "Simon",
+                value: 50,
+            },
+            {
+                id: 3,
+                name: "Tony",
+                value: 45,
+            },
+            {
+                id: 4,
+                name: "Annie",
+                value: 60,
+            },
+        ];
+        function sortArrList(arr) {
+            return arr.sort(function (a, b) {
+                return a.value - b.value;
+            });
+        }
+
+        function displaySortedArrays() {
+            var sortedArray = sortArrList(arr.slice()); // 使用 slice 创建副本，避免修改原始数组
+
+            console.log("按 value 值从小到大排序:", sortedArray);
+        }
+
+        // 调用函数
+        displaySortedArrays();
+    </script>
+</body>
+
+</html>

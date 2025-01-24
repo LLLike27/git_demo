@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grid Layout with Named Areas</title>
+  <style>
+    .container {
+      display: grid;
+      grid-template:
+        "putao longxia " 2fr
+        " yangyu " 1fr
+        " yangyu " 1fr
+        "xigua xigua xigua" 1fr / 1fr 1fr 1fr;
+      gap: 10px 20px;
+      /* 可选：设置项目间距 */
+    }
+
+    .putao {
+      grid-area: putao;
+      /* 使用一致的小写名称 */
+      background-color: chocolate;
+      /* 可选：添加背景颜色 */
+    }
+
+    .longxia {
+      grid-area: longxia;
+      background-color: lightcoral;
+      /* 可选：添加背景颜色 */
+    }
+
+    .yangyu {
+      grid-area: yangyu;
+      background-color: lightblue;
+      /* 可选：添加背景颜色 */
+    }
+
+    .xigua {
+      grid-area: xigua;
+      background-color: lightgreen;
+      /* 可选：添加背景颜色 */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="putao">葡萄</div>
+    <div class="longxia">龙虾</div>
+    <div class="yangyu">养鱼</div>
+    <div class="xigua">西瓜</div>
+    <div class="boluo">菠萝</div>
+  </div>
+</body>
+
+</html>

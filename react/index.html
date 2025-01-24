@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+备份
+<body>
+    <div id="container"></div>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+    <script type="text/babel">
+        class App extends React.Component {
+            render() {
+                return (
+                    <div>
+                        <h1>Hello</h1>
+                    </div>
+                );
+            }
+        }
+        ReactDOM.createRoot(document.getElementById('container')).render(<App />);
+
+        // ReactDOM.render(<App />, document.getElementById('container'));
+    </script>
+    <script>
+        const { name, age } = { name: 'zhangsan', age: 18 }
+        const [a, b] = [1, 2]
+        console.log(name, age, a, b);
+    </script>
+</body>
+
+</html>

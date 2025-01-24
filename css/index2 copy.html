@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex Layout</title>
+    <style>
+        .zt-section2 ul {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            padding: 0;
+        }
+
+        .zt-section2 ul li {
+            flex: 0 1 30%;
+            /* Flex-grow: 0, flex-shrink: 1, flex-basis: 30% */
+            margin-bottom: 10px;
+            /* Add margin to space out the rows */
+        }
+
+        .zt-section2 ul {
+            justify-content: space-between;
+        }
+
+        .zt-section2 ul li:nth-child(3n+1) {
+            margin-left: 0;
+        }
+
+        .zt-section2 ul li:nth-child(3n+3) {
+            margin-left: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="zt-section2">
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+            <li>Item 4</li>
+            <li>Item 5</li>
+            <li>Item 6</li>
+            <li>Item 7</li>
+            <li>Item 8</li>
+            <li>Item 9</li>
+        </ul>
+    </div>
+</body>
+
+</html>

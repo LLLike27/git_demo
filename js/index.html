@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>父页面</title>
+</head>
+
+<body>
+    <div>
+        <iframe id="h5-iframe" src="child.html"></iframe>
+        <button onclick="h5PostMessage()">点击</button>
+    </div>
+    <script>
+
+        function h5PostMessage() {
+            console.log('发送消息');
+            const data = { from: 'h5', type: 'openurl' };
+            const iframe = document.getElementById('h5-iframe');
+            iframe.contentWindow.postMessage(data, '*');
+        }
+
+    </script>
+</body>
+
+</html>

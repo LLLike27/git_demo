@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Overlay</title>
+    <style>
+        .container {
+            position: relative;
+            width: 600px;
+            /* 容器宽度 */
+            height: 400px;
+            /* 容器高度 */
+        }
+
+        .image {
+            position: absolute;
+            top: 0;
+        }
+
+        .image1 {
+            left: 0;
+            z-index: 1;
+            transform: scale(0.9);
+        }
+
+        .image2 {
+            left: 10px;
+            z-index: 3;
+        }
+
+        .image3 {
+            left: 20px;
+            z-index: 2;
+            transform: scale(0.9);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="https://pic5.xz3733.com/icon/202403/ad4a141f994e8859f6c59eb29c55e42a.gif?image/resize,m_lfit,w_215"
+            alt="Image 1" width="50" class="image image1">
+        <img src="https://pic5.xz3733.com/icon/202311/8c7b408d836a7b20d3566b34705ea5f0.gif?image/resize,m_lfit,w_215"
+            alt="Image 2" width="50" class="image image2">
+        <img src="http://pic5.xz3733.com/icon/202308/a743176c6e1d0e570204381421f06e37.png?image/resize,m_lfit,w_215"
+            alt="Image 3" width="50" class="image image3">
+    </div>
+</body>
+
+</html>

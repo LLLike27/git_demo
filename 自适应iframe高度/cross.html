@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Target</title>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
+    <script src="https://unpkg.com/jquery@3.7.1/dist/jquery.min.js"></script>
+</head>
+
+<body style="overflow-x: hidden;">
+    <div style="display:block; width:100%; border: 1px solid #666">
+        <div class="row">
+            <div class="col-12">
+                <div class="p-2">
+                    <h1>Hi</h1>
+                    <p>Auto size iframe cross domain.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div id="auto" class="p-2"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center">
+                    <hr>
+                    <p>footer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // BEGIN change content:
+        const words = 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua diam in arcu cursus euismod quis viverra nibh nunc aliquet bibendum enim facilisis gravida neque convallis a cras sagittis purus sit amet volutpat Consequat mauris duis ultricies lacus sed turpis tincidunt id consequat interdum varius sit amet mattis vulputate enim sed faucibus turpis in eu ridiculus mus mauris vitae ultricies leo integer malesuada nunc vel nulla pharetra diam sit amet nisl suscipit lobortis elementum nibh tellus molestie nunc non blandit massa enim dis parturient montes nascetur ridiculus mus justo nec ultrices dui sapien eget enim tortor at auctor urna nunc dictumst quisque sagittis purus sit amet volutpat consequat mauris nunc'.split(' ');
+        const $div = $('#auto');
+        function gen() {
+            const count = parseInt(Math.random() * 20) + 10;
+            if (count % 4 === 0) {
+                $div.find(':first-child').remove();
+                return;
+            }
+            let s = [];
+            for (let i = 0; i < count; i++) {
+                let n = parseInt(Math.random() * words.length);
+                s.push(words[n]);
+            }
+            s[0] = s[0].substring(0, 1).toUpperCase() + s[0].substring(1);
+            $div.append('<p>' + s.join(' ') + '.</p>');
+        }
+        setInterval(gen, 3000);
+        // END
+
+        // use MutationObserver to track any DOM changes:
+        let lastHeight = 0;
+        let body = document.getElementsByTagName('body')[0];
+        const domMo = new MutationObserver(() => {
+            let currentHeight = body.scrollHeight;
+            if (lastHeight !== currentHeight) {
+                if (parent.postMessage) {
+                    parent.postMessage({ type: 'resize', height: currentHeight }, '*');
+                }
+                lastHeight = currentHeight;
+            }
+        });
+        domMo.observe(body, {
+            attributes: true,
+            childList: true,
+            subtree: true
+        });
+    </script>
+</body>
+
+</html>

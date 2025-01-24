@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://static.pic3733.com/etc_server/3733games/css/base.css?v=2024091102">
+    <link rel="stylesheet" href="https://static.pic3733.com/etc_server/3733games/css/index.css?v=2024091103">
+    <link rel="stylesheet" href="https://static.pic3733.com/etc_server/3733games/css/animate.min.css">
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const appType = urlParams.get('c') || '10012';
+        var URL = {
+            m_Link: `https://cps.3733games.com/m_index.html?c=${appType}`,
+        }
+        var ua = navigator.userAgent.toLowerCase();
+        var platform = {
+            ios: function () {
+                return (/iphone|ipad|ipod|ios/i.test(ua));
+            },
+            android: function () {
+                return (/android/i.test(ua));
+            },
+            mobile: function () {
+                return (/iphone|ipad|ipod|ios|android|mobile/i.test(ua));
+            }
+        }
+        // 获取当前页面的域名
+        const currentDomain = window.location.hostname;
+        // 定义要判断的域名
+        const domain = "cps.3733games.com";
+        if (platform.mobile()) {
+            if (platform.ios()) {
+                window.location.href = URL.m_Link;
+            }
+            if (platform.android()) {
+                window.location.href = URL.m_Link;
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <header id="section1" class="header">
+        <div class="header_content">
+            <a class="fl" href="">
+                <img id="header_logo" src="https://static.pic3733.com/etc_server/3733games/images/logo.png"
+                    class="header_logo" alt="logo">
+                <span class="header_title">3733游戏推</span>
+            </a>
+            <ul class="nav_list">
+                <li class="nav_item" data-target="section1">
+                    <a class="nav_link def_active" href="#section1">首页</a>
+                </li>
+                <li class="nav_item" data-target="section2">
+                    <a class="nav_link" href="#section2">手游推广</a>
+                </li>
+                <li class="nav_item" data-target="section3">
+                    <a class="nav_link" href="#section3">渠道管理</a>
+                </li>
+                <li class="nav_item" data-target="section4">
+                    <a class="nav_link" href="#section4">联系我们</a>
+                </li>
+                <li class="nav_item" data-target="section5">
+                    <a class="nav_link" href="#section5">相关下载</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <header id="section1" class="fixed-header">
+        <div class="header_content ">
+            <a class="fl" href="">
+                <img id="header_logo" src="https://static.pic3733.com/etc_server/3733games/images/logo.png"
+                    class="header_logo" alt="logo">
+                <span class="header_title">3733游戏推</span>
+            </a>
+            <ul class="nav_list">
+                <li class="nav_item">
+                    <a class="nav_link active" data-target="section1" href="#section1">首页</a>
+                </li>
+                <li class="nav_item">
+                    <a class="nav_link" data-target="section2" href="#section2">手游推广</a>
+                </li>
+                <li class="nav_item">
+                    <a class="nav_link" data-target="section3" href="#section3">渠道管理</a>
+                </li>
+                <li class="nav_item">
+                    <a class="nav_link" data-target="section4" href="#section4">联系我们</a>
+                </li>
+                <li class="nav_item">
+                    <a class="nav_link" data-target="section5" href="#section5">相关下载</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!-- 主体内容 -->
+    <main class="main">
+        <!-- 头部轮播 -->
+        <div class="head_carousel">
+            <div class="left_box animate__animated animate__lightSpeedInLeft">
+                <div class="content">
+                    <div class="title">
+                        3733游戏推
+                    </div>
+                    <div class="sub_title">
+                        <div class="sub_title_text">手游推广</div>
+                        <div class="sub_title_text">渠道管理</div>
+                    </div>
+                    <div class="btn_down">
+                        <img src="https://static.pic3733.com/etc_server/3733games/images/btn_down.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="right_banner animate__animated animate__lightSpeedInRight">
+                <div class="carousel_box">
+                    <div class="banner_list">
+                        <div class="ibp_slides slides3733" id="indexAppSlides">
+                            <img style="z-index:2" class="ibps_img ibps_img_s1"
+                                src="https://static.pic3733.com/etc_server/3733games/images/banner_img_01.png" alt="">
+                            <img style="z-index:2" class="ibps_img ibps_img_s1"
+                                src="https://static.pic3733.com/etc_server/3733games/images/banner_img_02.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 手游推广 -->
+        <div id="section2" class="mobile_extension">
+            <div class="title title animate__animated animate__fadeInDown">
+                <h2>手游推广</h2>
+            </div>
+            <div class="sub_title title animate__animated animate__fadeInDown">
+                <span>依托3733，覆盖PC、WAP、APP上千万用户</span>
+            </div>
+            <div class="extension_list">
+                <div class="extension_img account_management animate__animated animate__bounceInLeft">
+                    <img src="https://static.pic3733.com/etc_server/3733games/images/sytg-img.png" alt="">
+                </div>
+                <div class="extension_img account_management animate__animated animate__bounceInRight">
+                    <img src="https://static.pic3733.com/etc_server/3733games/images/jltx-img.png" alt="">
+                </div>
+            </div>
+        </div>
+        <!-- 渠道管理 -->
+        <div id="section3" class="channel_management">
+            <div class="title animate__animated animate__fadeInDown">
+                <h2>渠道管理</h2>
+            </div>
+            <div class="sub_title animate__animated animate__fadeInDown">
+                <span>提高渠道效率、数据分析和效果评估</span>
+            </div>
+            <div class="management_list">
+                <div class="management_item ">
+                    <div class="channel_img">
+                        <img src="https://static.pic3733.com/etc_server/3733games/images/channel_icon_01.png" alt="">
+                    </div>
+                    <div class="channel_title">渠道分成 </div>
+                    <div class="channel_sub_title">分成比例高，快速结算</div>
+                </div>
+                <div class="management_item ">
+                    <div class="channel_img">
+                        <img src="https://static.pic3733.com/etc_server/3733games/images/channel_icon_02.png" alt="">
+                    </div>
+                    <div class="channel_title">分渠道账户管理 </div>
+                    <div class="channel_sub_title">可增加多个下属渠道代理</div>
+                </div>
+                <div class="management_item ">
+                    <div class="channel_img">
+                        <img src="https://static.pic3733.com/etc_server/3733games/images/channel_icon_03.png" alt="">
+                    </div>
+                    <div class="channel_title">分渠道数据曲线分析 </div>
+                    <div class="channel_sub_title"> 数据清晰，实时关注</div>
+                </div>
+                <div class="management_item">
+                    <div class="channel_img">
+                        <img src="https://static.pic3733.com/etc_server/3733games/images/channel_icon_04.png" alt="">
+                    </div>
+                    <div class="channel_title">分渠道产品管理 </div>
+                    <div class="channel_sub_title">海量游戏</div>
+                </div>
+            </div>
+        </div>
+        <!-- 联系我们 -->
+        <div id="section4" class="contact_us">
+            <div class="title animate__animated animate__fadeInDown">
+                <h2>联系我们</h2>
+            </div>
+            <div class="sub_title animate__animated animate__fadeInDown">
+                <span>专业团队，期待您的咨询</span>
+            </div>
+            <div class="contact_us_list">
+                <div class="contact_us_item  animate__animated animate__fadeInDown">
+                    <div class="item_info">
+                        <div class="add">添加</div>
+                        <div class="wechat">客服微信</div>
+                        <div class="describe">专属客服，随时准备为您解答疑惑！</div>
+                    </div>
+                    <div class="item_icon">
+                        <img src="https://static.pic3733.com/etc_server/3733games/images/contact_us_icon_01.png" alt="">
+                    </div>
+                    <div class="scan_code_01">
+                        <img src="https://static.pic3733.com/etc_server/3733games/images/left_qr_code.jpg" alt="">
+                    </div>
+                </div>
+                <div class="contact_us_item animate__animated animate__fadeInDown">
+                    <div class="item_info">
+                        <div class="add">添加</div>
+                        <div class="wechat">企业微信</div>
+                        <div class="describe">专属客服，随时准备为您解答疑惑！</div>
+                    </div>
+                    <div class="item_icon">
+                        <img src="https://static.pic3733.com/etc_server/3733games/images/contact_us_icon_02.png" alt="">
+                    </div>
+                    <div class="scan_code_01">
+                        <img src="https://static.pic3733.com/etc_server/3733games/images/right_qr_code.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 相关下载 -->
+        <div id="section5" class="related_download">
+            <div class="title animate__animated animate__fadeInDown">
+                <h2>相关下载</h2>
+            </div>
+            <div class="sub_title animate__animated animate__fadeInDown">
+                <span>立即下载，让营销变得更简单！</span>
+            </div>
+            <div class="related_download_box animate__animated animate__fadeIn">
+                <div id="download_box_qr_code" class="download_box_qr_code"></div>
+            </div>
+        </div>
+    </main>
+    <!-- 底部 -->
+    <div class="footer">
+        <div class="link clearfix">
+            <h2>友情链接</h2>
+            <a href="https://www.shoujiwan.com" title="安卓游戏" target="_target" rel="">
+                安卓游戏 </a>
+            <a href="https://www.3733.com/" title="3733游戏" target="" rel="">
+                3733游戏 </a>
+            <a href="https://www.3733.com/topic/" title="3733合集大全" target="_target" rel="">
+                3733合集大全 </a>
+            <a href="https://www.te5.com/" title="特玩网" target="_target" rel="">
+                特玩网 </a>
+            <a href="https://www.3733.com/relate/" title="游戏合集" target="_target" rel="">
+                游戏合集 </a>
+            <a href="https://www.gaoshouyou.com/" title="手机游戏" target="_target" rel="">
+                手机游戏 </a>
+            <a href="https://www.3733.com/top/mvbsyptpxb/" title="满v手游平台" target="_target" rel="">
+                满v手游平台 </a>
+            <a href="https://www.3733.com/youxi/" title="手机网游下载" target="" rel="">
+                手机网游下载 </a>
+            <a href="https://www.3733.com/sd/" title="射雕专区" target="_target" rel="">
+                射雕专区 </a>
+            <a href="https://www.8979.com/" title="bt公益服下载" target="_target" rel="">
+                bt公益服下载 </a>
+            <a href="https://www.3733.com" title="手游私服" target="_blank" rel="">
+                手游私服 </a>
+            <a href="https://app.3733.com/" title="3733游戏盒" target="_blank" rel="">
+                3733游戏盒 </a>
+            <a href="https://www.3733.com/soft/" title="手机软件" target="" rel="">
+                手机软件 </a>
+            <a href="https://www.3733.com/ys/" title="原神专区" target="_target" rel="">
+                原神专区 </a>
+            <a href="https://www.3733.com/nsh/" title="逆水寒手游专区" target="_target" rel="">
+                逆水寒手游专区 </a>
+            <a href="https://www.3733.com/jcczz/" title="金铲铲之战专区" target="_target" rel="">
+                金铲铲之战专区 </a>
+            <a href="https://www.3733.com/bhxtd/" title="崩坏星穹铁道专区" target="_target" rel="">
+                崩坏星穹铁道专区 </a>
+            <a href="https://www.3733.com/dzpd/" title="蛋仔派对专区" target="_target" rel="">
+                蛋仔派对专区 </a>
+            <a href="https://www.3733.com/jh/" title="晶核专区" target="_target" rel="">
+                晶核专区 </a>
+            <a href="https://www.duotegame.com/" title="游戏下载" target="_target" rel="">
+                游戏下载 </a>
+        </div>
+        <div class="siteMap">
+            <div class="map">
+                <p>
+                    <a href="https://www.3733.com/about/index.html" target="_blank">关于本站</a>
+                    <em>|</em>
+                    <a href="https://www.3733.com/about/contact.html" target="_blank">联系我们</a>
+                    <em>|</em>
+                    <a href="https://www.3733.com/about/help.html" target="_blank">帮助中心</a>
+                    <em>|</em>
+                    <a href="https://www.3733.com/about/law.html" target="_blank">版权声明</a>
+                    <em>|</em>
+                    <a href="https://www.3733.com/about/link.html" target="_blank">友情链接</a>
+                    <em>|</em>
+                    <a href="https://www.3733.com/about/jzjh.html" target="_blank">家长监护</a>
+                    <em>|</em>
+                    <a href="https://www.3733.com/about/xieyi.html" target="_blank">用户协议</a>
+                    <em>|</em>
+                    <a href="https://m.3733.com" target="_blank">3733手机版</a>
+                    <em>|</em>
+                    <a href="https://open.3733.com/" target="_blank">开发者中心</a>
+                </p>
+                <a key="578da155efbfb05002f297aa" logo_size="124x47" logo_type="business"
+                    href="https://v.yunaq.com/certificate?domain=cps.3733games.com" style="float:left;" target="_blank">
+                    <b id="aqLogoRPCZO" style="display: none;"></b>
+                    <img src="https://static.pic3733.com/etc_server/3733games/images/3385c1719265950f3b6b847d7375c5bd.png"
+                        alt="安全联盟认证" width="124" height="47" style="border: none;">
+                </a>
+                <p>
+                    作品版权归作者所有，如果侵犯了您的版权，请联系我们，本站将在3个工作日内删除。<br>
+                    温馨提示：抵制不良游戏，拒绝盗版游戏，注意自我保护，谨防受骗上当，适度游戏益脑，沉迷游戏伤身，合理安排时间，享受健康生活<br>
+                    <span>文明办网文明上网举报、纠纷处理及不良内容举报邮箱：jubao@3733.com</span><br>
+                    <span>
+                        <span style="display: none;">
+                            <a
+                                href="http://sq.ccm.gov.cn:80/ccnt/sczr/service/business/emark/toDetail/58dcc7e1967c488381b1a88094618c70"><img
+                                    class="sp-icon"
+                                    src="https://s7static.pic3733.com/3733site/old/static/pc/images/wenhuajingying.png">闽网文〔2019〕3518-187号</a>
+                            |
+                        </span>
+                        <span>&nbsp;&nbsp;电信业务经营许可证：闽B2-20200342</span>
+                        <a target="_blank"
+                            href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35020302024623"
+                            style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
+                            <img src="https://static.pic3733.com/etc_server/3733games/images/beian.png"
+                                style="float:left;">
+                            <span>闽公网安备 35020302024623号</span>
+                        </a>
+
+                        <br>
+                    </span>
+                    Copyright © 2024
+                    <a href="/">cps.3733games.com</a> All rights reserved&nbsp;&nbsp;厦门三七三三网络科技有限公司&nbsp;&nbsp;|
+                    <a href="https://beian.miit.gov.cn/" target="_blank">备案号：<span>闽ICP备20002920号-11</span></a>|
+                    <a href="http://webscan.360.cn/index/checkwebsite/url/cps.3733games.com"
+                        name="10e6f2f28d5e7d9a778a8d520cac6afd">360网站安全检测平台</a>
+                    <script src="https://s7static.pic3733.com/3733site/old/static/pc/js/push.js"></script>
+                </p>
+            </div>
+            <script>
+                // var _hmt = _hmt || [];
+                // (function () {
+                //     var hm = document.createElement("script");
+                //     hm.src = "//hm.baidu.com/hm.js?2e3e14c64c47bdc6894967fa2ffaef83";
+                //     var s = document.getElementsByTagName("script")[0];
+                //     s.parentNode.insertBefore(hm, s);
+                // })();
+            </script>
+        </div>
+    </div>
+    <script src="https://static.pic3733.com/etc_server/3733games/js/jquery.min.js"></script>
+    <script src="https://static.pic3733.com/etc_server/3733games/js/jquery.qrcode.min.js"></script>
+    <script src="https://static.pic3733.com/etc_server/3733games/js/lazyload.js"></script>
+    <script src="https://static.pic3733.com/etc_server/3733games/js/swiper-bundle.min.js"></script>
+    <script src="https://static.pic3733.com/etc_server/3733games/js/index.js?v=2024091108"></script>
+    <script>
+        // 获取导航菜单中的所有导航链接
+        const navLinks = $('.nav_link');
+        // 检查 .header 是否存在
+        const header = $('.header');
+        const headerHeight = header.length ? header.height() : 0;
+        navLinks.each(function (item, index) {
+            // console.log($(this));
+        })
+        $.each(navLinks, (i, val) => {
+            console.log($(val));
+
+        })
+        function updateNavActiveClass(scrollPos) {
+            navLinks.each(function () {
+                const target = $(this).data('target');
+                const targetElement = $('#' + target); // 获取目标元素
+
+                // 检查目标元素是否存在
+                if (targetElement.length) {
+                    const targetPosition = targetElement.offset().top;
+                    if (scrollPos < targetPosition - 76) {
+                        // 移除当前链接的高亮样式
+                        $(this).removeClass('active');
+                    } else {
+                        // 先移除所有同级的 `active` 类
+                        navLinks.removeClass('active');
+                        // 再为当前链接添加 `active` 类
+                        $(this).addClass('active');
+                    }
+                }
+            });
+        }
+
+        // 初始化时调用
+        updateNavActiveClass($(this).scrollTop() + headerHeight);
+
+        // 监听页面滚动事件
+        $(window).on('scroll', function () {
+            // 获取页面滚动的垂直位置
+            const scrollPosition = $(this).scrollTop() + headerHeight;
+            updateNavActiveClass(scrollPosition);
+        });
+        $(document).ready(function () {
+            // 监听按钮点击事件
+            $('.btn_down').on('click', function () {
+                // 使用 animate 滚动到页面底部
+                $('html, body').animate({
+                    scrollTop: $(document).height()
+                }, 1000); // 滚动速度可以根据需要设置
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: none;
+        }
+
+        #testCheckBox:checked~.container {
+            display: flex;
+            margin: 16px;
+            border: 1px gray solid;
+            width: 200px;
+            height: 48px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .shark-txt {
+            -webkit-text-fill-color: transparent;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0)40%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0)60%)-100% /50%no-repeatcurrentColor;
+            -webkit-background-clip: text;
+            animation: shark-txt 2s infinite;
+        }
+
+
+        @keyframes shark-txt {
+            from {
+                background-position: -100%;
+            }
+
+            to {
+                background-position: 200%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <input type="checkbox" name="test" id="testCheckBox">
+    <label for="testCheckBox">test</label>
+    <div class="container">隐藏内容</div>
+    <h1 class="shark-txt">
+        xsljasd
+    </h1>
+
+
+</body>
+
+</html>

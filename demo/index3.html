@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrapper {
+            display: inline-block;
+            width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .test {
+            font-size: 32px;
+            line-height: 32px;
+            color: #2C2C2C;
+            position: relative;
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding-right: 14px;
+        }
+
+        .icon {
+            position: absolute;
+            right: 0;
+            top: 11px;
+            width: 10px;
+            height: 10px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="test">
+            223123223123123223123122312322312312322312312322312312322312312312322312322312312322312312322312312322312312312322312322312312322312312322312312322312312312322312322312312322312312322312312322312312312322312322312312322312312322312312322312312312322312322312312322312312322312312322312312312323223123123223123123123<text
+                class="icon"></text>
+        </div>
+    </div>
+</body>
+
+</html>

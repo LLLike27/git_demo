@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-color: #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .image {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="image animate__animated ">
+            <img src="./11.png" alt="">
+        </div>
+    </div>
+    <script>
+        // animate__tada
+        // 写个定时器 5秒过后  image 后面加一个类目 animate__tada 然后又去掉 这个类目
+        setTimeout(() => {
+            document.querySelector('.image').classList.add('animate__tada')
+            setTimeout(() => {
+                document.querySelector('.image').classList.remove('animate__tada')
+            }, 5000)
+        }, 5000)
+    </script>
+</body>
+
+</html>

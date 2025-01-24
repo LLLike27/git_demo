@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 500px;
+            height: 100%;
+
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+        }
+
+        .red {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+        }
+
+        .box:nth-child(2) {
+            float: right;
+        }
+
+        @scope (.box) to (.filter) {
+            .red {
+                background-color: red;
+            }
+        }
+        div:has(.filter) {
+            background: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="box">
+            <div class="red">这里是红色</div>
+            <div class="filter">
+                <div class="red">这里不是红色，因为被过滤了</div>
+                <div class="red-box">
+                    <div class="red">即使是子组件也不是红色，因为被过滤了</div>
+                </div>
+            </div>
+            <div class="red">这里是红色</div>
+        </div>
+        <div class="red">这里不是红色</div>
+
+    </div>
+    <script>
+
+    </script>
+</body>
+
+</html>

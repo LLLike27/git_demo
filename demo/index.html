@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outside-circle {
+            width: 150px;
+            height: 50px;
+            position: relative;
+            background: #e91e63;
+            border-radius: 10px 10px 0 0;
+
+            &::after {
+                content: "";
+                position: absolute;
+                width: 150px;
+                height: 50px;
+                background: #e91e63;
+                bottom: 0;
+                border-radius: 0 20px 0 20px;
+                transform: perspective(40px) scaleX(1.4) scaleY(1.5) rotateX(20deg) translate(-10px, 0);
+                transform-origin: 50% 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outside-circle">outside-circle</div>
+</body>
+
+</html>

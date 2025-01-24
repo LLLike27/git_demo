@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>子页面</title>
+</head>
+
+<body>
+    <script>
+        function h5HandleMessage(e) {
+            if (e.data.from === 'h5') {
+                switch (e.data.type) {
+                    case 'exit':
+                        console.log('退出');
+                        break;
+                    case 'openurl':
+                        console.log('打开 URL');
+                        break;
+                }
+            }
+        }
+
+        window.addEventListener('load', () => {
+            window.addEventListener('message', h5HandleMessage, false);
+        });
+    </script>
+</body>
+
+</html>

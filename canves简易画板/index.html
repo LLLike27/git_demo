@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div class="canvas-box">
+        <div class="cursor"></div>
+        <canvas id="canvas" style="background-color: rgba(0,0,0,0)"></canvas>
+    </div>
+    <div class="option">
+        <div class="item">
+            画笔大小(2~50)：
+            <input type="number" name="pencil" id="" min="2" max="50" value="20">
+        </div>
+        <div class="item">
+            橡皮大小(2~50)：
+            <input type="number" name="eraser" id="" min="2" max="50" value="20">
+        </div>
+        <div class="item">
+            保存图片质量(0.4~1)：
+            <input type="number" name="quality" id="" min="0.4" max="1" value="0.8" step="0.1">
+        </div>
+        <div class="item">
+            保存格式：
+            <input type="radio" data-type="imgType" name="png" id="" checked>png
+            <input type="radio" data-type="imgType" name="jpeg" id="">jpeg
+            <input type="radio" data-type="imgType" name="webp" id="">webp
+        </div>
+        <div class="item">
+            画布随上传图片缩放：
+            <input type="radio" data-type="imgRule" name="long" checked>长边
+            <input type="radio" data-type="imgRule" name="short">短边
+            <input type="radio" data-type="imgRule" name="custom">自适应
+        </div>
+        <div class="item">
+            水印文案：<input type="text" name="waterMark" value="大吉大利，今晚吃鸡">
+        </div>
+        <div class="item">
+            水印文案颜色：<input type="color" name="waterMarkColor">
+        </div>
+        <div class="item">
+            水印透明度(0.1~1)：
+            <input type="number" name="waterMarkOpacity" id="" min="0.1" max="1" value="0.15" step="0.01">
+        </div>
+        <div class="item">
+            水印文字大小(10~60)：
+            <input type="number" name="fontSize" id="" min="12" max="60" value="14">
+        </div>
+        <div class="item">
+            水印旋转角度(-360~360)：
+            <input type="number" name="rotate" id="" min="-360" max="360" value="-25">
+        </div>
+        <div class="item">
+            水印水平间距(50~500)：
+            <input type="number" name="x" id="" min="20" max="500" value="100">
+        </div>
+        <div class="item">
+            水印垂直间距(50~500)：
+            <input type="number" name="y" id="" min="20" max="500" value="100">
+        </div>
+        <div class="item">
+            水印X轴偏移量(50~500)：
+            <input type="number" name="offsetX" id="" min="50" max="300" value="50">
+        </div>
+        <div class="item">
+            水印Y轴偏移量(50~500)：
+            <input type="number" name="offsetY" id="" min="50" max="300" value="50">
+        </div>
+        <div class="item">
+            水印文案最大宽度(50~500)：
+            <input type="number" name="maxWidth" id="" min="50" max="300" value="200">
+        </div>
+        <div class="btn-box">
+            <button name="usePencil">使用画笔</button>
+            <button name="useEraser">使用橡皮</button>
+            <input type="color" name="color" id="">
+            <button name="reset">清空画布</button>
+            <button name="undo">撤销</button>
+            <button name="redo">恢复</button>
+            <button name="save">保存</button>
+            <button name="upload">上传图片</button>
+            <button name="waterMark">使用水印</button>
+            
+        </div>
+    </div>
+    <input type="file" name="file" accept="image/jpeg,image/png,image/webp" style="display: none">
+    <script src="./index.js"></script>
+</body>
+
+</html>

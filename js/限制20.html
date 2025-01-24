@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奖品名称输入框</title>
+    <style>
+        .input-container {
+            margin: 20px;
+        }
+
+        .input-container label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-container input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .input-container .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="input-container">
+        <label for="prizeName">奖品名称：</label>
+        <input type="text" id="prizeName" placeholder="请输入奖品名称" required maxlength="20">
+        <span class="error-message" id="errorMessage"></span>
+    </div>
+    <button id="submitBtn">确定</button>
+    <script>
+        // 获取输入框和错误提示元素
+        const prizeNameInput = document.getElementById('prizeName');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // 监听输入框的变化
+        prizeNameInput.addEventListener('input', () => {
+            // 清空错误提示
+            errorMessage.textContent = '';
+
+            // 检查是否为空
+            if (prizeNameInput.value.trim() === '') {
+                errorMessage.textContent = '请输入奖品名称';
+            }
+        });
+
+        // 提交表单时进行验证
+        function validateForm() {
+            if (prizeNameInput.value.trim() === '') {
+                errorMessage.textContent = '请输入奖品名称';
+                return false;
+            }
+            return true;
+        }
+
+        // 示例：模拟表单提交按钮
+        document.getElementById('submitBtn').addEventListener('click', (e) => {
+            if (!validateForm()) {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+
+</html>

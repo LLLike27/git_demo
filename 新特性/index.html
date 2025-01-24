@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 默认情况下，这个按钮会被第一个Tab键选中，因为它的DOM顺序靠前 -->
+    <button>Button 1 (Default Tab Order)</button>
+
+    <!-- 设置 tabindex 为 2，所以它会在 tabindex 为 1 的元素之后被选中 -->
+    <button tabindex="2">Button 2 (tabindex="2")</button>
+
+    <!-- 设置 tabindex 为 1，所以它会在默认的按钮之前被选中 -->
+    <button tabindex="1">Button 3 (tabindex="1")</button>
+
+    <!-- 默认情况下，div 元素是不能通过Tab键选中的，但我们可以设置 tabindex="0" 使其变得可选 -->
+    <div
+      tabindex="0"
+      style="border: 1px solid black; padding: 10px; margin: 10px"
+    >
+      Div Element (tabindex="0") - Now focusable with Tab key
+    </div>
+  </body>
+</html>

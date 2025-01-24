@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./echarts.js"></script>
+</head>
+
+<body>
+    <div id="main" style="width: 500px;height:300px;"></div>
+    <br>
+    <br>
+    <br>
+    <div id="main1" style="width: 800px;height:500px;"></div>
+    <script>
+        let dataTitle = ['累计访问(次数)', '累计完成任务(次数)', '累计抽奖(次数)', '累计中奖(次数)']
+        let dataFrequency = [10, 52, 200, 330]
+        let dataTime = ['2024-9-19', '2024-9-20', '2024-9-21', '2024-9-22', '2024-9-23', '2024-9-24']
+        let dataTimeMap = [
+            [320, 332, 191, 334, 390, 330],
+            [330, 200, 191, 234, 290, 320],
+            [150, 182, 201, 154, 190, 310],
+            [100, 182, 191, 154, 190, 250]
+        ]
+        let conversionRateData = ['23%', '20%', '15%'].reverse()
+
+
+    </script>
+    <script>
+        var chartDom = document.getElementById('main');
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        option = {
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '14%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [
+                {
+                    type: 'value',
+                    name: '次数',
+                    axisLabel: {
+                        formatter: '{value}'
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'category',
+                    data: dataTitle,
+                    axisTick: {
+                        alignWithLabel: true
+                    }
+                }
+            ],
+            series: [
+                {
+                    name: '次数',
+                    type: 'bar',
+                    barWidth: '60%',
+                    data: dataFrequency,
+                    // 添加 markLine，表示转化率箭头
+                    markLine: {
+                        symbol: ['none', 'arrow'], // 设置箭头
+                        label: {
+                            show: true,
+                            formatter: function (params) {
+                                let index = params.dataIndex;
+                                return '转化率: ' + conversionRateData[index];
+                            },
+                            position: 'middle'
+                        },
+                        lineStyle: {
+                            type: 'solid',
+                            color: '#929292'
+                        },
+                        data: dataFrequency.map((value, index) => {
+                            if (index < dataFrequency.length) {
+                                return [
+                                    { coord: [value, index] }, // 下一个柱的坐标
+                                    { coord: [dataFrequency[index - 1], index - 1] }, // 当前柱的坐标
+                                ];
+                            }
+                            return null; // 最后一个柱子不需要箭头
+                        }).filter(item => item !== null)
+                    }
+                }
+            ]
+        };
+
+        option && myChart.setOption(option);
+    </script>
+    <script>
+
+        var chartDom = document.getElementById('main1');
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        option = {
+            title: {
+                text: '数据趋势'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    label: {
+                        backgroundColor: '#6a7985'
+                    }
+                }
+            },
+            legend: {
+                data: dataTitle,
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: dataTime
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value'
+                }
+            ],
+            series: [
+                {
+                    name: dataTitle[0],
+                    type: 'line',
+                    stack: 'Total',
+                    areaStyle: {},
+                    label: {
+                        show: true,
+                        position: 'top'
+                    },
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: dataTimeMap[0]
+                },
+                {
+                    name: dataTitle[1],
+                    type: 'line',
+                    stack: 'Total',
+                    areaStyle: {},
+                    label: {
+                        show: true,
+                        position: 'top'
+                    },
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: dataTimeMap[1]
+                },
+                {
+                    name: dataTitle[2],
+                    type: 'line',
+                    stack: 'Total',
+                    areaStyle: {},
+                    label: {
+                        show: true,
+                        position: 'top'
+                    },
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: dataTimeMap[2]
+                },
+                {
+                    name: dataTitle[3],
+                    type: 'line',
+                    stack: 'Total',
+                    areaStyle: {},
+                    label: {
+                        show: true,
+                        position: 'top'
+                    },
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: dataTimeMap[3]
+                },
+            ]
+        };
+
+        option && myChart.setOption(option);
+    </script>
+</body>
+
+</html>

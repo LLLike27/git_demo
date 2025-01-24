@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            display: flex;
+            background: #f1f1f1;
+            margin: 0;
+        }
+
+        .card {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border-radius: 8px;
+            margin: auto;
+            resize: horizontal;
+            overflow: hidden;
+            transform: scale(2);
+            width: 360px;
+            min-width: 320px;
+            /*下面是生成的样式*/
+            -webkit-mask-image: radial-gradient(circle at 88px 4px, transparent 4px, red 4.5px), radial-gradient(closest-side circle at 50%, red 99%, transparent 100%);
+            -webkit-mask-size: 100%, 2px 4px;
+            -webkit-mask-repeat: repeat, repeat-y;
+            -webkit-mask-position: 0 -4px, 87px;
+            -webkit-mask-composite: source-out;
+            mask-composite: subtract;
+        }
+
+        .card-left {
+            width: 88px;
+            text-align: center;
+            font-size: 24px;
+            color: #F22424
+        }
+
+        .card-left span {
+            font-size: 10px;
+        }
+
+        .card-right {
+            padding: 16px 12px;
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+        }
+
+        .card-info {
+            margin: 0;
+            font-size: 14px;
+            line-height: 20px;
+            color: rgba(33, 32, 44, 0.9);
+        }
+
+        .card-time {
+            font-size: 12px;
+            line-height: 16px;
+            font-weight: normal;
+            color: #F22424;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="card">
+        <div class="card-left">350<span>书券</span></div>
+        <div class="card-right">
+            <p class="card-info">满30元送350书券</p>
+            <strong class="card-time">仅剩 04:48:49</strong>
+        </div>
+    </section>
+</body>
+
+</html>
