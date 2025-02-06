@@ -20,3 +20,5 @@ var pow = n => n * n;
 var reverseInt = n => n.toString().split("").reverse().join("") | 0;
 
 pipe(3).double.pow.reverseInt.get; // 63
+console.log(pipe(3).double.pow.reverseInt.get);
+console.log(pipe(3).double);
